@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RentMate – Building Management Software</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={theme:{extend:{colors:{emerald:{50:'rgb(var(--c50) / <alpha-value>)',100:'rgb(var(--c100) / <alpha-value>)',600:'rgb(var(--c600) / <alpha-value>)',700:'rgb(var(--c700) / <alpha-value>)',800:'rgb(var(--c800) / <alpha-value>)'}}}}}</script>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:#f1f5f9;color:#0f172a;font-family:'Inter','Hind Siliguri',system-ui,sans-serif}
+body.bn{font-family:'Hind Siliguri','Inter',system-ui,sans-serif}
+:root{--c50:236 253 245;--c100:209 250 229;--c600:5 150 105;--c700:4 120 87;--c800:6 95 70}
+@keyframes pop{0%{transform:scale(.4) translateY(10px);opacity:0}60%{transform:scale(1.1);opacity:1}80%{transform:scale(.96)}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgb(var(--c600) / .45)}50%{box-shadow:0 0 0 10px rgb(var(--c600) / 0)}}
+.pop{animation:pop .7s cubic-bezier(.2,.9,.3,1.2) .3s both}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+.hero{background:linear-gradient(135deg,#0a1020,#101c36)}
+.hero::before{content:"";position:absolute;inset:-60px;pointer-events:none;background:radial-gradient(circle at 18% 28%,rgb(var(--c700) / .5),transparent 42%),radial-gradient(circle at 82% 18%,rgb(var(--c600) / .4),transparent 46%),radial-gradient(circle at 55% 95%,rgb(var(--c800) / .5),transparent 45%);filter:blur(55px)}
+a[class*="rounded-lg"],#lang{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,background-color .2s}
+a[class*="rounded-lg"]:hover,#lang:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 26px -8px rgb(var(--c600) / .6)}
+a[class*="rounded-lg"]:active{transform:scale(.97)}
+a[class*="rounded-lg"]::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);transform:translateX(-130%);pointer-events:none}
+a[class*="rounded-lg"]:hover::after{transform:translateX(130%);transition:transform .7s}
+[data-theme]{transition:transform .2s}[data-theme]:hover{transform:scale(1.3)}
+.bld{transform-box:fill-box;transform-origin:50% 100%;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
+.win{opacity:.2;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){.bld,.win,a[class*="rounded-lg"]::after{animation:none}}
+header nav a{padding:.4rem .9rem;border-radius:9999px;font-weight:500;transition:background-color .2s,transform .2s,box-shadow .2s}
+header nav a:hover{color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px -6px rgba(0,0,0,.5)}
+header nav a:hover{background:rgb(var(--c600))}
+h2{color:rgb(var(--c700));display:table;margin-left:auto;margin-right:auto}
+#contact h2{background:none;color:#fff;display:block;margin:0}
+.grid>div{--k:rgb(var(--c700))}
+.grid>div h3{color:var(--k,#0f172a)}
+#featureGrid>div,#serviceGrid>div,#trustGrid>div{border-top:4px solid var(--k)}
+.logo{color:rgb(var(--c600));display:inline-block;transition:transform .25s,color .25s,text-shadow .25s}
+.logo:hover{color:#fff;transform:scale(1.08) rotate(-1.5deg);text-shadow:0 0 16px rgb(var(--c600)),0 0 4px rgb(var(--c600))}
+.reveal{opacity:0;transform:scale(.8) translateY(24px)}
+.reveal.in{opacity:1;transform:none;animation:pop2 .75s cubic-bezier(.2,.9,.3,1.2) var(--d,0s) backwards}
+@keyframes pop2{0%{opacity:0;transform:scale(.78) translateY(28px)}60%{opacity:1;transform:scale(1.06) translateY(0)}100%{opacity:1;transform:none}}
+#featureGrid>div,#serviceGrid>div,#priceGrid>div,#stepGrid>div,#trustGrid>div,#reviewGrid>div{transition:transform .25s,box-shadow .25s}
+#featureGrid>div:hover,#serviceGrid>div:hover,#priceGrid>div:hover,#stepGrid>div:hover,#trustGrid>div:hover,#reviewGrid>div:hover{transform:translateY(-6px);box-shadow:0 18px 32px -14px rgba(15,23,42,.35)}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="sticky top-0 z-20 bg-slate-900/95 backdrop-blur border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="#top" class="logo font-extrabold text-xl tracking-tight">🏢 RentMate</a>
+    <nav class="hidden md:flex gap-1 text-sm text-slate-200">
+      <a href="#features" data-bn="সুবিধা">Features</a>
+      <a href="#services" data-bn="সার্ভিস">Services</a>
+      <a href="#pricing" data-bn="প্যাকেজ">Pricing</a>
+      <a href="#why" data-bn="কেন আমরা">Why us</a>
+      <a href="#faq" data-bn="প্রশ্নোত্তর">FAQ</a>
+      <a href="#contact" data-bn="যোগাযোগ">Contact</a>
+    </nav>
+    <button id="lang" class="text-sm bg-emerald-600 text-white rounded-full px-3 py-1 font-medium">বাংলা</button>
+  </div>
+</header>
+
+<main id="top">
+<!-- Hero -->
+<section class="hero text-white relative overflow-hidden">
+  <svg id="city" class="absolute bottom-0 inset-x-0 w-full h-40 md:h-52" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 pb-44 md:pb-56 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="inline-block bg-white/10 border border-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full" data-bn="বাড়িওয়ালা ও ম্যানেজারদের জন্য">For landlords & building managers</span>
+      <div class="mt-3"><span class="pop inline-block bg-emerald-600 text-white font-bold text-base md:text-lg px-4 py-2 rounded-xl shadow-lg">⚡ <span data-bn="বিশৃঙ্খলা ছাড়াই চালান আপনার বিল্ডিং">Run Your Building with Zero Chaos</span></span></div>
+      <h1 class="mt-4 text-3xl md:text-5xl font-bold leading-tight" data-bn="বাড়ির সব হিসাব, এক জায়গায়।">All your building’s records, in one place.</h1>
+      <p class="mt-4 text-slate-300 text-lg" data-bn="ভাড়াটিয়ার তথ্য, ভাড়া ও ইউটিলিটি বিল, নোটিশ আর WhatsApp রিমাইন্ডার—সবকিছু এক ড্যাশবোর্ডে।">Tenant info, rent and utility bills, notices and WhatsApp reminders—all from one dashboard.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#contact" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-lg" data-bn="ফ্রি ডেমো নিন">Get a free demo</a>
+        <a href="#pricing" class="border border-white/30 hover:bg-white/10 font-semibold px-6 py-3 rounded-lg" data-bn="প্যাকেজ দেখুন">See pricing</a>
+      </div>
+      <p class="mt-4 text-sm text-slate-400" data-bn="১ মাস ফ্রি ট্রায়াল • কার্ড লাগবে না">1 month free trial • No card needed</p>
+    </div>
+    <div class="bg-white text-slate-900 rounded-2xl shadow-2xl border border-slate-200 p-5">
+      <div class="flex justify-between items-center mb-3"><span class="font-semibold" data-bn="নভেম্বর ২০২৬ – সারাংশ">November 2026 – Summary</span><span class="text-xs text-emerald-700 bg-emerald-50 px-2 py-1 rounded" data-bn="লাইভ">Live</span></div>
+      <div class="grid grid-cols-3 gap-3 text-center">
+        <div class="bg-slate-50 rounded-lg p-3"><div class="text-2xl font-bold">24</div><div class="text-xs text-slate-500" data-bn="মোট ফ্ল্যাট">Total flats</div></div>
+        <div class="bg-emerald-50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-700">21</div><div class="text-xs text-slate-500" data-bn="ভাড়া পরিশোধিত">Rent paid</div></div>
+        <div class="bg-amber-50 rounded-lg p-3"><div class="text-2xl font-bold text-amber-600">3</div><div class="text-xs text-slate-500" data-bn="বকেয়া">Due</div></div>
+      </div>
+      <div class="mt-3 space-y-2 text-sm">
+        <div class="flex justify-between border rounded-lg px-3 py-2"><span>A-3 · Rahim</span><span class="text-emerald-700" data-bn="পরিশোধিত">Paid</span></div>
+        <div class="flex justify-between border rounded-lg px-3 py-2"><span>B-2 · Karim</span><span class="text-amber-600" data-bn="রিমাইন্ডার পাঠানো হয়েছে">Reminder sent</span></div>
+        <div class="flex justify-between border rounded-lg px-3 py-2"><span>C-5 · Salma</span><span class="text-red-600" data-bn="বকেয়া">Overdue</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features / advantages -->
+<section id="features" class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="আপনার যা যা সুবিধা পাবেন">What you get</h2>
+  <div id="featureGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-white border-y border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="আমরা কী সার্ভিস দিই">What we offer</h2>
+    <p class="text-center text-slate-600 mt-2" data-bn="আমাদের প্রোডাক্ট একটি অনলাইন সফটওয়্যার (SaaS)—মাসিক সাবস্ক্রিপশনে ব্যবহার করুন।">Our product is online software (SaaS)—use it on a monthly subscription.</p>
+    <div id="serviceGrid" class="mt-8 grid sm:grid-cols-2 gap-5"></div>
+  </div>
+</section>
+
+<!-- Pricing + offer -->
+<section id="pricing" class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="প্যাকেজ ও দাম">Plans & pricing</h2>
+  <p class="text-center text-slate-600 mt-2" data-bn="বিল্ডিংয়ের ফ্ল্যাট সংখ্যা অনুযায়ী প্যাকেজ বেছে নিন।">Pick a plan based on the number of flats.</p>
+  <div class="mt-5 mx-auto max-w-2xl bg-amber-50 border border-amber-200 text-amber-900 rounded-xl px-4 py-3 text-center text-sm font-medium" data-bn="🎉 অফার: ১ মাস ফ্রি ট্রায়াল + বার্ষিক পেমেন্টে ২০% ছাড় + ফ্রি ডেটা এন্ট্রি">🎉 Offer: 1 month free trial + 20% off yearly payment + free data entry</div>
+  <div id="priceGrid" class="mt-8 grid md:grid-cols-3 gap-5"></div>
+  <p class="mt-4 text-center text-xs text-slate-500" data-bn="* দাম নমুনা—পরে আপনার প্রকৃত দাম বসানো হবে।">* Sample prices—replace with your real pricing later.</p>
+</section>
+
+<!-- Delivery -->
+<section class="bg-white border-y border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="কীভাবে চালু করবেন (ডেলিভারি)">How you get started (delivery)</h2>
+    <p class="text-center text-slate-600 mt-2" data-bn="সবকিছু অনলাইনে—কোনো সফটওয়্যার ইনস্টল বা হার্ডওয়্যার লাগবে না।">Everything is online—no software to install, no hardware needed.</p>
+    <div id="stepGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- Why us -->
+<section id="why" class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="অন্যদের থেকে আমরা আলাদা কেন?">Why we’re different</h2>
+  <div class="mt-8 overflow-x-auto">
+    <table class="w-full min-w-[520px] text-sm bg-white border border-slate-200 rounded-xl overflow-hidden">
+      <thead class="bg-emerald-600 text-white"><tr>
+        <th class="text-left p-3" data-bn="বিষয়">Feature</th><th class="p-3">RentMate</th><th class="p-3" data-bn="খাতা / এক্সেল">Notebook / Excel</th></tr></thead>
+      <tbody id="compareBody"></tbody>
+    </table>
+  </div>
+  <div id="trustGrid" class="mt-8 grid sm:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- Reviews -->
+<section class="bg-white border-y border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="গ্রাহকদের মতামত">What customers say</h2>
+    <div id="reviewGrid" class="mt-8 grid md:grid-cols-3 gap-5"></div>
+    <p class="mt-4 text-center text-xs text-slate-500" data-bn="* নমুনা রিভিউ—আসল রিভিউ পেলে বদলে দেওয়া হবে।">* Sample reviews—replace with real ones later.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="max-w-3xl mx-auto px-4 py-16">
+  <h2 class="text-2xl md:text-3xl font-bold text-center" data-bn="সাধারণ প্রশ্ন">FAQ</h2>
+  <div id="faqList" class="mt-8 space-y-3"></div>
+</section>
+
+<!-- CTA + contact -->
+<section id="contact" class="bg-emerald-700 text-white">
+  <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="text-2xl md:text-4xl font-bold" data-bn="আজই আপনার বিল্ডিং ডিজিটাল করুন">Take your building digital today</h2>
+      <p class="mt-3 text-emerald-100" data-bn="১ মাস ফ্রি ট্রায়াল শুরু করুন। আমরা ২৪ ঘণ্টার মধ্যে সেটআপ করে দেব।">Start a 1-month free trial. We’ll set you up within 24 hours.</p>
+      <a href="https://wa.me/8801924899441" class="mt-6 inline-block bg-white text-emerald-700 font-semibold px-6 py-3 rounded-lg hover:bg-emerald-50" data-bn="WhatsApp-এ ফ্রি ডেমো নিন">Get a free demo on WhatsApp</a>
+    </div>
+    <div class="bg-emerald-800/60 rounded-2xl p-6 space-y-3 text-sm">
+      <div>📞 <span data-bn="ফোন:">Phone:</span> 0174016093</div>
+      <div>💬 WhatsApp: 01924899441</div>
+      <div>✉️ Email: rafiqulislammr6@gmail.com</div>
+      <div>📍 <span data-bn="ঠিকানা: ঢাকা, বাংলাদেশ">Address: Dhaka, Bangladesh</span></div>
+      <div>🕘 <span data-bn="সকাল ৯টা – রাত ৯টা (শনি–বৃহস্পতি)">9am – 9pm (Sat–Thu)</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="fixed right-3 bottom-3 z-30 flex items-center gap-2 bg-white/95 border border-slate-200 rounded-full px-3 py-2 shadow-lg" style="bottom:calc(.75rem + env(safe-area-inset-bottom,0px))">
+  <span class="text-xs text-slate-500">🎨</span>
+  <button data-theme="emerald" title="Emerald" class="w-5 h-5 rounded-full" style="background:#059669"></button>
+  <button data-theme="blue" title="Blue" class="w-5 h-5 rounded-full" style="background:#2563eb"></button>
+  <button data-theme="violet" title="Violet" class="w-5 h-5 rounded-full" style="background:#7c3aed"></button>
+  <button data-theme="orange" title="Orange" class="w-5 h-5 rounded-full" style="background:#ea580c"></button>
+  <button data-theme="rose" title="Rose" class="w-5 h-5 rounded-full" style="background:#e11d48"></button>
+</div>
+<footer class="text-center text-xs text-slate-500 py-6">© 2026 RentMate. <span data-bn="সর্বস্বত্ব সংরক্ষিত।">All rights reserved.</span></footer>
+
+<script>
+// [icon, en title, bn title, en text, bn text]
+const features=[
+["👥","Tenant records","ভাড়াটিয়ার তথ্য","Name, NID, phone, family members and documents for every flat.","প্রতিটি ফ্ল্যাটের ভাড়াটিয়ার নাম, NID, ফোন, সদস্য ও ডকুমেন্ট।"],
+["🏠","Flat occupancy","ফ্ল্যাটে কতজন থাকে","See how many people live in each flat at a glance.","কোন ফ্ল্যাটে কতজন থাকে তা এক নজরে দেখুন।"],
+["💬","WhatsApp reminders","WhatsApp রিমাইন্ডার","Automatic rent and utility bill reminders to tenants.","ভাড়া ও ইউটিলিটি বিলের রিমাইন্ডার নিজে থেকেই চলে যায়।"],
+["📢","Rent notices","ভাড়ার নোটিশ","Send rent increase or general notices to all or selected flats.","সব বা নির্দিষ্ট ফ্ল্যাটে ভাড়া/সাধারণ নোটিশ পাঠান।"],
+["💳","Online bill payment","অনলাইনে বিল পরিশোধ","Tenants can pay rent and bills online; receipts are auto-saved.","ভাড়াটিয়া অনলাইনে বিল দিতে পারবেন; রসিদ নিজে জমা হবে।"],
+["📊","Monthly reports","মাসিক রিপোর্ট","Income, dues and expenses in clear reports you can download.","আয়, বকেয়া ও খরচের রিপোর্ট ডাউনলোড করুন।"]];
+const services=[
+["🧾","Rent & bill management","ভাড়া ও বিল ম্যানেজমেন্ট","Track gas, electricity, water, service charge and rent per flat.","গ্যাস, বিদ্যুৎ, পানি, সার্ভিস চার্জ ও ভাড়ার হিসাব ফ্ল্যাট অনুযায়ী।"],
+["📱","Tenant mobile portal","ভাড়াটিয়ার মোবাইল পোর্টাল","Tenants see dues, history and notices from their phone.","ভাড়াটিয়া ফোনেই বকেয়া, ইতিহাস ও নোটিশ দেখতে পারবেন।"],
+["🛠️","Setup & data entry","সেটআপ ও ডেটা এন্ট্রি","Our team enters your existing tenant data for you.","আপনার বর্তমান ভাড়াটিয়ার তথ্য আমরাই এন্ট্রি করে দিই।"],
+["🎧","Support & training","সাপোর্ট ও ট্রেনিং","Bangla support by phone and WhatsApp, plus a short training session.","ফোন ও WhatsApp-এ বাংলা সাপোর্ট এবং সংক্ষিপ্ত ট্রেনিং।"]];
+// [en name, bn name, price, en flats, bn flats, features en, features bn, popular]
+const plans=[
+["Starter","স্টার্টার","৳999","Up to 10 flats","১০ ফ্ল্যাট পর্যন্ত",["Tenant records","Rent tracking","WhatsApp reminders"],["ভাড়াটিয়ার তথ্য","ভাড়ার হিসাব","WhatsApp রিমাইন্ডার"],0],
+["Standard","স্ট্যান্ডার্ড","৳1,999","Up to 30 flats","৩০ ফ্ল্যাট পর্যন্ত",["Everything in Starter","Online payment","Notices & reports"],["স্টার্টারের সব সুবিধা","অনলাইন পেমেন্ট","নোটিশ ও রিপোর্ট"],1],
+["Pro","প্রো","৳3,999","Up to 100 flats","১০০ ফ্ল্যাট পর্যন্ত",["Everything in Standard","Multiple buildings","Priority support"],["স্ট্যান্ডার্ডের সব সুবিধা","একাধিক বিল্ডিং","অগ্রাধিকার সাপোর্ট"],0]];
+const steps=[
+["1","Contact us","যোগাযোগ করুন","Call or WhatsApp us and book a free demo.","ফোন বা WhatsApp-এ ফ্রি ডেমো বুক করুন।"],
+["2","Share your data","তথ্য দিন","Send tenant list or photos of your records.","ভাড়াটিয়ার তালিকা বা খাতার ছবি পাঠান।"],
+["3","We set it up","আমরা সেটআপ করি","Account ready within 24 hours.","২৪ ঘণ্টার মধ্যে অ্যাকাউন্ট প্রস্তুত।"],
+["4","Start managing","ব্যবহার শুরু","Login from any phone or computer.","যেকোনো ফোন বা কম্পিউটার থেকে লগইন করুন।"]];
+const compare=[
+["Automatic WhatsApp reminders","স্বয়ংক্রিয় WhatsApp রিমাইন্ডার",1,0],
+["Online payment & receipts","অনলাইন পেমেন্ট ও রসিদ",1,0],
+["Data safe if phone/notebook is lost","ফোন/খাতা হারালেও তথ্য নিরাপদ",1,0],
+["Reports in one click","এক ক্লিকে রিপোর্ট",1,0],
+["Bangla & English","বাংলা ও ইংরেজি",1,0]];
+const trust=[
+["🔒","Secure data","নিরাপদ তথ্য","Encrypted and backed up daily.","এনক্রিপ্টেড এবং প্রতিদিন ব্যাকআপ।"],
+["🇧🇩","Made for Bangladesh","বাংলাদেশের জন্য তৈরি","bKash, Nagad, local bill types and Bangla.","বিকাশ, নগদ, স্থানীয় বিল ও বাংলা ভাষা।"],
+["🤝","Real local support","স্থানীয় সাপোর্ট","Talk to a real person, not a bot.","সরাসরি মানুষের সাথে কথা বলুন।"]];
+const reviews=[
+["Md. Anwar Hossain","মো. আনোয়ার হোসেন","Landlord, Mirpur","বাড়িওয়ালা, মিরপুর","Earlier I chased tenants every month. Now reminders go automatically.","আগে প্রতি মাসে ভাড়াটিয়াদের পিছনে ঘুরতে হতো। এখন রিমাইন্ডার নিজেই যায়।"],
+["Nusrat Jahan","নুসরাত জাহান","Manager, Uttara","ম্যানেজার, উত্তরা","All 28 flats’ records are in one place. Reports take seconds.","২৮টি ফ্ল্যাটের সব তথ্য এক জায়গায়। রিপোর্ট বের করতে কয়েক সেকেন্ড লাগে।"],
+["Shafiqul Islam","শফিকুল ইসলাম","Owner, Dhanmondi","মালিক, ধানমন্ডি","Setup was done in one day and support speaks Bangla. Very easy.","একদিনেই সেটআপ হয়েছে, সাপোর্ট বাংলায় কথা বলে। খুব সহজ।"]];
+const faqs=[
+["Do I need to install anything?","কিছু ইনস্টল করতে হবে কি?","No. It works in your browser on phone or computer.","না। ফোন বা কম্পিউটারের ব্রাউজারেই চলে।"],
+["How is the service delivered?","সার্ভিস কীভাবে পাব?","It’s online. After you contact us we create your account within 24 hours and train you.","এটি অনলাইন। যোগাযোগের পর ২৪ ঘণ্টার মধ্যে অ্যাকাউন্ট তৈরি ও ট্রেনিং দেওয়া হয়।"],
+["Is my tenants’ data safe?","ভাড়াটিয়ার তথ্য কি নিরাপদ?","Yes. Data is encrypted, backed up daily and never shared.","হ্যাঁ। তথ্য এনক্রিপ্টেড, প্রতিদিন ব্যাকআপ হয় এবং কারও সাথে শেয়ার করা হয় না।"],
+["Can tenants pay online?","ভাড়াটিয়া কি অনলাইনে পেমেন্ট করতে পারবেন?","Yes, through supported mobile banking and cards.","হ্যাঁ, সমর্থিত মোবাইল ব্যাংকিং ও কার্ডের মাধ্যমে।"],
+["Can I cancel anytime?","যেকোনো সময় বন্ধ করা যাবে?","Yes. Monthly plans have no lock-in.","হ্যাঁ। মাসিক প্যাকেজে কোনো বাধ্যবাধকতা নেই।"]];
+
+const $=id=>document.getElementById(id);
+const t=(en,bn)=>`<span data-bn="${bn}">${en}</span>`;
+const card=a=>`<div class="bg-white rounded-xl border border-slate-200 p-5"><div class="text-3xl">${a[0]}</div><h3 class="mt-3 font-semibold">${t(a[1],a[2])}</h3><p class="mt-1 text-sm text-slate-600">${t(a[3],a[4])}</p></div>`;
+$('featureGrid').innerHTML=features.map(card).join('');
+$('serviceGrid').innerHTML=services.map(card).join('');
+$('trustGrid').innerHTML=trust.map(card).join('');
+$('priceGrid').innerHTML=plans.map(p=>`<div class="bg-white rounded-2xl p-6 border ${p[7]?'border-emerald-600 ring-2 ring-emerald-600':'border-slate-200'}">
+${p[7]?'<div class="text-xs font-semibold text-emerald-700 mb-2">'+t('Most popular','সবচেয়ে জনপ্রিয়')+'</div>':''}
+<h3 class="text-lg font-semibold">${t(p[0],p[1])}</h3>
+<div class="mt-2 text-3xl font-bold">${p[2]}<span class="text-sm font-normal text-slate-500">${t('/month','/মাস')}</span></div>
+<div class="text-sm text-slate-500">${t(p[3],p[4])}</div>
+<ul class="mt-4 space-y-2 text-sm">${p[5].map((f,i)=>`<li>✅ ${t(f,p[6][i])}</li>`).join('')}</ul>
+<a href="#contact" class="mt-5 block text-center ${p[7]?'bg-emerald-600 text-white':'border border-slate-300'} font-semibold py-2.5 rounded-lg">${t('Start free trial','ফ্রি ট্রায়াল শুরু')}</a></div>`).join('');
+$('stepGrid').innerHTML=steps.map(s=>`<div class="text-center"><div class="mx-auto w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold">${s[0]}</div><h3 class="mt-3 font-semibold">${t(s[1],s[2])}</h3><p class="mt-1 text-sm text-slate-600">${t(s[3],s[4])}</p></div>`).join('');
+$('compareBody').innerHTML=compare.map(r=>`<tr class="border-t"><td class="p-3">${t(r[0],r[1])}</td><td class="p-3 text-center">${r[2]?'✅':'❌'}</td><td class="p-3 text-center">${r[3]?'✅':'❌'}</td></tr>`).join('');
+$('reviewGrid').innerHTML=reviews.map(r=>`<div class="bg-slate-50 rounded-xl border border-slate-200 p-5"><div class="text-amber-500">★★★★★</div><p class="mt-2 text-sm">“${t(r[4],r[5])}”</p><div class="mt-3 text-sm font-semibold">${t(r[0],r[1])}</div><div class="text-xs text-slate-500">${t(r[2],r[3])}</div></div>`).join('');
+$('faqList').innerHTML=faqs.map(f=>`<details class="bg-white border border-slate-200 rounded-xl p-4"><summary class="font-medium cursor-pointer">${t(f[0],f[1])}</summary><p class="mt-2 text-sm text-slate-600">${t(f[2],f[3])}</p></details>`).join('');
+
+// language toggle
+function setLang(l){
+  document.documentElement.lang=l;document.body.classList.toggle('bn',l==='bn');
+  document.querySelectorAll('[data-bn]').forEach(e=>{
+    if(!e.hasAttribute('data-en'))e.setAttribute('data-en',e.textContent);
+    e.textContent=l==='bn'?e.getAttribute('data-bn'):e.getAttribute('data-en');
+  });
+  $('lang').textContent=l==='bn'?'English':'বাংলা';
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+$('lang').onclick=()=>setLang(document.documentElement.lang==='bn'?'en':'bn');
+let saved='en';try{saved=localStorage.getItem('lang')||'en'}catch(e){}
+if(saved==='bn')setLang('bn');
+
+// color themes: 50 / 100 / 600 / 700 / 800
+const themes={
+ emerald:['236 253 245','209 250 229','5 150 105','4 120 87','6 95 70'],
+ blue:['239 246 255','219 234 254','37 99 235','29 78 216','30 64 175'],
+ violet:['245 243 255','237 233 254','124 58 237','109 40 217','91 33 182'],
+ orange:['255 247 237','255 237 213','234 88 12','194 65 12','154 52 18'],
+ rose:['255 241 242','255 228 230','225 29 72','190 18 60','159 18 57']};
+function setTheme(n){const v=themes[n]||themes.emerald,s=document.documentElement.style;
+ ['--c50','--c100','--c600','--c700','--c800'].forEach((k,i)=>s.setProperty(k,v[i]));
+ try{localStorage.setItem('theme',n)}catch(e){}}
+document.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>setTheme(b.dataset.theme));
+let th='emerald';try{th=localStorage.getItem('theme')||'emerald'}catch(e){}
+setTheme(th);
+
+// crystal-white animated skyline
+(function(){
+const el=document.getElementById('city');let x=0,s='',i=0;
+const sd=n=>{const v=Math.sin(n*9301+49297)*233280;return v-Math.floor(v)};
+while(x<1200){const w=40+Math.floor(sd(i+1)*50),h=60+Math.floor(sd(i+7)*110),y=200-h;
+ s+=`<g class="bld" style="animation-delay:${(i*0.12).toFixed(2)}s"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="url(#gl)" stroke="rgba(255,255,255,.55)"/><path d="M${x} ${y}L${x+w*0.45} ${y}L${x} ${y+h*0.5}Z" fill="rgba(255,255,255,.18)"/>`;
+ for(let r=y+10;r<190;r+=14)for(let c=x+7;c<x+w-8;c+=12){s+=`<rect x="${c}" y="${r}" width="5" height="7" rx="1" fill="#fff" class="win" style="animation-delay:${(sd(r*c)*5).toFixed(1)}s"/>`}
+ s+='</g>';x+=w+6+Math.floor(sd(i+3)*10);i++}
+el.innerHTML='<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#bfe3ff" stop-opacity=".08"/></linearGradient></defs>'+s+'<rect x="0" y="196" width="1200" height="4" fill="#fff" opacity=".6"/>';
+})();
+// pop-up reveal animation for hero + body blocks
+(function(){
+const sel=['section:not(#contact) h2'];
+const els=[];
+sel.forEach(s=>document.querySelectorAll(s).forEach(e=>{
+ if(e.classList.contains('reveal')||e.querySelector('.pop'))return;
+ e.classList.add('reveal');
+ e.style.setProperty('--d',(Math.min([].indexOf.call(e.parentNode.children,e),8)*0.1).toFixed(1)+'s');
+ els.push(e);}));
+if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+els.forEach(e=>io.observe(e));
+})();
+</script>
+</body>
+</html>
